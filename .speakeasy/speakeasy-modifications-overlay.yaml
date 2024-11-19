@@ -1,0 +1,55 @@
+overlay: 1.0.0
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/apps/{app_id}/installs/{install_id}/delete"]["delete"]
+    update:
+      x-speakeasy-group: apps.installs
+      x-speakeasy-name-override: hardDelete
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.apps.delete()
+      after: sdk.apps.installs.hardDelete()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/webhooks/{webhook_id}"]["patch"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.Webhooks.updateWebhook()
+      after: sdk.webhooks.update()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/keys"]["post"]
+    update:
+      x-speakeasy-group: keys
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.ApiKeys.create()
+      after: sdk.keys.create()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/keys"]["get"]
+    update:
+      x-speakeasy-group: keys
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.ApiKeys.list()
+      after: sdk.keys.list()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/apps/{app_id}/installs/{install_id}/uninstall"]["patch"]
+    update:
+      x-speakeasy-group: apps.installs
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.apps.uninstall()
+      after: sdk.apps.installs.uninstall()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
