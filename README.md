@@ -1,9 +1,9 @@
-# pushpress-ts
-
-Developer-friendly & type-safe Typescript SDK specifically catered to leverage *pushpress-ts* API.
-
-<div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=pushpress-ts&utm_campaign=typescript"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/fab0b863-5d21-41c5-83ac-ee6857766f8d" width="600">
+    <h1>Typescript SDK</h1>
+    <p><strong>The Solution for Bringing In More Members.</strong></p>
+    <p>Developer-friendly & type-safe Typescript SDK specifically catered to leverage the <strong>PushPress</strong> API.</p>
+    <a href="https://ppe.apidocumentation.com/reference"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
@@ -16,7 +16,7 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 
 <!-- Start Summary [summary] -->
 ## Summary
-
+PushPress API: Welcome to PushPress' API documentation!
 
 <!-- End Summary [summary] -->
 
