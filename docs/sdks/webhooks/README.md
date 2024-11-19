@@ -20,14 +20,14 @@ Create a new webhook to subscribe to one or more events
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.webhooks.create({
+  const result = await pushpress.webhooks.create({
     url: "https://your-webhook-url.com",
     events: [
       "event_1",
@@ -47,17 +47,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { webhooksCreate } from "pushpress-ts/funcs/webhooksCreate.js";
+import { PushpressCore } from "pushpress/core.js";
+import { webhooksCreate } from "pushpress/funcs/webhooksCreate.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await webhooksCreate(pushpressTs, {
+  const res = await webhooksCreate(pushpress, {
     url: "https://your-webhook-url.com",
     events: [
       "event_1",
@@ -110,14 +110,14 @@ List all registered webhooks
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.webhooks.list();
+  const result = await pushpress.webhooks.list();
 
   // Handle the result
   console.log(result);
@@ -131,17 +131,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { webhooksList } from "pushpress-ts/funcs/webhooksList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { webhooksList } from "pushpress/funcs/webhooksList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await webhooksList(pushpressTs);
+  const res = await webhooksList(pushpress);
 
   if (!res.ok) {
     throw res.error;
@@ -188,14 +188,14 @@ Get details of a specific webhook
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.webhooks.get({
+  const result = await pushpress.webhooks.get({
     webhookId: "<id>",
   });
 
@@ -211,17 +211,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { webhooksGet } from "pushpress-ts/funcs/webhooksGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { webhooksGet } from "pushpress/funcs/webhooksGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await webhooksGet(pushpressTs, {
+  const res = await webhooksGet(pushpress, {
     webhookId: "<id>",
   });
 
@@ -270,14 +270,14 @@ Update the URL or events for an existing webhook
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.webhooks.update({
+  const result = await pushpress.webhooks.update({
     webhookId: "<id>",
     requestBody: "<value>",
   });
@@ -294,17 +294,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { webhooksUpdate } from "pushpress-ts/funcs/webhooksUpdate.js";
+import { PushpressCore } from "pushpress/core.js";
+import { webhooksUpdate } from "pushpress/funcs/webhooksUpdate.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await webhooksUpdate(pushpressTs, {
+  const res = await webhooksUpdate(pushpress, {
     webhookId: "<id>",
     requestBody: "<value>",
   });
@@ -354,14 +354,14 @@ Delete a specific webhook
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.webhooks.delete({
+  const result = await pushpress.webhooks.delete({
     webhookId: "<id>",
   });
 
@@ -377,17 +377,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { webhooksDelete } from "pushpress-ts/funcs/webhooksDelete.js";
+import { PushpressCore } from "pushpress/core.js";
+import { webhooksDelete } from "pushpress/funcs/webhooksDelete.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await webhooksDelete(pushpressTs, {
+  const res = await webhooksDelete(pushpress, {
     webhookId: "<id>",
   });
 

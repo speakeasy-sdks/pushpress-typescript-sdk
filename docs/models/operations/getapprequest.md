@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetAppRequest } from "pushpress-ts/models/operations";
+import { GetAppRequest } from "pushpress/models/operations/getapp.js";
 
 let value: GetAppRequest = {
   appId: "<id>",

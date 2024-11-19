@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Webhook } from "pushpress-ts/models/components";
+import { Webhook } from "pushpress/models/components/webhook.js";
 
 let value: Webhook = {
   id: "UUID",

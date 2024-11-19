@@ -5,8 +5,12 @@
 import { checkinsGet } from "../funcs/checkinsGet.js";
 import { checkinsList } from "../funcs/checkinsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { Checkin } from "../models/components/checkin.js";
+import { GetCheckinRequest } from "../models/operations/getcheckin.js";
+import {
+  ListCheckinsRequest,
+  ListCheckinsResponse,
+} from "../models/operations/listcheckins.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
@@ -15,9 +19,9 @@ export class Checkins extends ClientSDK {
    * Get a list of all check-ins
    */
   async list(
-    request: operations.ListCheckinsRequest,
+    request: ListCheckinsRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListCheckinsResponse>> {
+  ): Promise<PageIterator<ListCheckinsResponse>> {
     return unwrapResultIterator(checkinsList(
       this,
       request,
@@ -29,9 +33,9 @@ export class Checkins extends ClientSDK {
    * Get a check-in by ID
    */
   async get(
-    request: operations.GetCheckinRequest,
+    request: GetCheckinRequest,
     options?: RequestOptions,
-  ): Promise<components.Checkin> {
+  ): Promise<Checkin> {
     return unwrapAsync(checkinsGet(
       this,
       request,

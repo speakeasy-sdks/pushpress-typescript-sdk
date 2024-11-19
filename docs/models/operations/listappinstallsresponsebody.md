@@ -5,7 +5,7 @@ A paginated list of app installs
 ## Example Usage
 
 ```typescript
-import { ListAppInstallsResponseBody } from "pushpress-ts/models/operations";
+import { ListAppInstallsResponseBody } from "pushpress/models/operations/listappinstalls.js";
 
 let value: ListAppInstallsResponseBody = {
   data: [

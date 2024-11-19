@@ -6,8 +6,9 @@ import { appsGet } from "../funcs/appsGet.js";
 import { appsInstall } from "../funcs/appsInstall.js";
 import { appsList } from "../funcs/appsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { App } from "../models/components/app.js";
+import { GetAppRequest } from "../models/operations/getapp.js";
+import { InstallAppRequest } from "../models/operations/installapp.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Installs } from "./installs.js";
 
@@ -22,7 +23,7 @@ export class Apps extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<Array<components.App>> {
+  ): Promise<Array<App>> {
     return unwrapAsync(appsList(
       this,
       options,
@@ -33,9 +34,9 @@ export class Apps extends ClientSDK {
    * Get details of a specific app
    */
   async get(
-    request: operations.GetAppRequest,
+    request: GetAppRequest,
     options?: RequestOptions,
-  ): Promise<components.App> {
+  ): Promise<App> {
     return unwrapAsync(appsGet(
       this,
       request,
@@ -47,7 +48,7 @@ export class Apps extends ClientSDK {
    * Install an app for a company
    */
   async install(
-    request: operations.InstallAppRequest,
+    request: InstallAppRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(appsInstall(

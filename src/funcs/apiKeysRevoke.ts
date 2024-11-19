@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod";
-import { PushpressTsCore } from "../core.js";
+import { PushpressCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
@@ -12,15 +12,35 @@ import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
+  BadRequest,
+  BadRequest$inboundSchema,
+} from "../models/errors/badrequest.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import * as errors from "../models/errors/index.js";
+import {
+  InternalServerError,
+  InternalServerError$inboundSchema,
+} from "../models/errors/internalservererror.js";
+import { NotFound, NotFound$inboundSchema } from "../models/errors/notfound.js";
+import {
+  RateLimited,
+  RateLimited$inboundSchema,
+} from "../models/errors/ratelimited.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
+import { Timeout, Timeout$inboundSchema } from "../models/errors/timeout.js";
+import {
+  Unauthorized,
+  Unauthorized$inboundSchema,
+} from "../models/errors/unauthorized.js";
+import {
+  RevokeApiKeyRequest,
+  RevokeApiKeyRequest$outboundSchema,
+} from "../models/operations/revokeapikey.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -30,18 +50,18 @@ import { Result } from "../types/fp.js";
  * Revoke (deactivate) an API key.
  */
 export async function apiKeysRevoke(
-  client: PushpressTsCore,
-  request: operations.RevokeApiKeyRequest,
+  client: PushpressCore,
+  request: RevokeApiKeyRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
     void,
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.BadRequest
-    | errors.RateLimited
-    | errors.InternalServerError
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | BadRequest
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -53,7 +73,7 @@ export async function apiKeysRevoke(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.RevokeApiKeyRequest$outboundSchema.parse(value),
+    (value) => RevokeApiKeyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -158,12 +178,12 @@ export async function apiKeysRevoke(
 
   const [result] = await M.match<
     void,
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.BadRequest
-    | errors.RateLimited
-    | errors.InternalServerError
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | BadRequest
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -174,14 +194,14 @@ export async function apiKeysRevoke(
   >(
     M.nil(200, z.void()),
     M.fail([400, "4XX", "5XX"]),
-    M.jsonErr([401, 403, 407, 511], errors.Unauthorized$inboundSchema),
-    M.jsonErr([404, 501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr([408, 504], errors.Timeout$inboundSchema),
-    M.jsonErr([413, 414, 415, 422, 431, 510], errors.BadRequest$inboundSchema),
-    M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.jsonErr([401, 403, 407, 511], Unauthorized$inboundSchema),
+    M.jsonErr([404, 501, 505], NotFound$inboundSchema),
+    M.jsonErr([408, 504], Timeout$inboundSchema),
+    M.jsonErr([413, 414, 415, 422, 431, 510], BadRequest$inboundSchema),
+    M.jsonErr(429, RateLimited$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
-      errors.InternalServerError$inboundSchema,
+      InternalServerError$inboundSchema,
     ),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

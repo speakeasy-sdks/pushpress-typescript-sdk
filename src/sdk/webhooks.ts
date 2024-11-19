@@ -8,8 +8,14 @@ import { webhooksGet } from "../funcs/webhooksGet.js";
 import { webhooksList } from "../funcs/webhooksList.js";
 import { webhooksUpdate } from "../funcs/webhooksUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { Webhook } from "../models/components/webhook.js";
+import { CreateWebhookRequestBody } from "../models/operations/createwebhook.js";
+import {
+  DeleteWebhookRequest,
+  DeleteWebhookResponseBody,
+} from "../models/operations/deletewebhook.js";
+import { GetWebhookRequest } from "../models/operations/getwebhook.js";
+import { UpdateWebhookRequest } from "../models/operations/updatewebhook.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Webhooks extends ClientSDK {
@@ -17,9 +23,9 @@ export class Webhooks extends ClientSDK {
    * Create a new webhook to subscribe to one or more events
    */
   async create(
-    request: operations.CreateWebhookRequestBody,
+    request: CreateWebhookRequestBody,
     options?: RequestOptions,
-  ): Promise<components.Webhook> {
+  ): Promise<Webhook> {
     return unwrapAsync(webhooksCreate(
       this,
       request,
@@ -32,7 +38,7 @@ export class Webhooks extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<components.Webhook> {
+  ): Promise<Webhook> {
     return unwrapAsync(webhooksList(
       this,
       options,
@@ -43,9 +49,9 @@ export class Webhooks extends ClientSDK {
    * Get details of a specific webhook
    */
   async get(
-    request: operations.GetWebhookRequest,
+    request: GetWebhookRequest,
     options?: RequestOptions,
-  ): Promise<components.Webhook> {
+  ): Promise<Webhook> {
     return unwrapAsync(webhooksGet(
       this,
       request,
@@ -57,9 +63,9 @@ export class Webhooks extends ClientSDK {
    * Update the URL or events for an existing webhook
    */
   async update(
-    request: operations.UpdateWebhookRequest,
+    request: UpdateWebhookRequest,
     options?: RequestOptions,
-  ): Promise<components.Webhook> {
+  ): Promise<Webhook> {
     return unwrapAsync(webhooksUpdate(
       this,
       request,
@@ -71,9 +77,9 @@ export class Webhooks extends ClientSDK {
    * Delete a specific webhook
    */
   async delete(
-    request: operations.DeleteWebhookRequest,
+    request: DeleteWebhookRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteWebhookResponseBody> {
+  ): Promise<DeleteWebhookResponseBody> {
     return unwrapAsync(webhooksDelete(
       this,
       request,

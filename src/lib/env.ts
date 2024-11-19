@@ -8,22 +8,22 @@ import * as z from "zod";
 import { SDKOptions } from "./config.js";
 
 export interface Env {
-  PUSHPRESSTS_API_KEY?: string | undefined;
+  PUSHPRESS_API_KEY?: string | undefined;
 
   /**
    * Sets the companyId parameter for all supported operations
    */
-  PUSHPRESSTS_COMPANY_ID?: string | undefined;
+  PUSHPRESS_COMPANY_ID?: string | undefined;
 
-  PUSHPRESSTS_DEBUG?: boolean | undefined;
+  PUSHPRESS_DEBUG?: boolean | undefined;
 }
 
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
-  PUSHPRESSTS_API_KEY: z.string().optional(),
+  PUSHPRESS_API_KEY: z.string().optional(),
 
-  PUSHPRESSTS_COMPANY_ID: z.string().optional(),
+  PUSHPRESS_COMPANY_ID: z.string().optional(),
 
-  PUSHPRESSTS_DEBUG: z.coerce.boolean().optional(),
+  PUSHPRESS_DEBUG: z.coerce.boolean().optional(),
 });
 
 let envMemo: Env | undefined = undefined;
@@ -56,8 +56,8 @@ export function fillGlobals(options: SDKOptions): SDKOptions {
 
   const envVars = env();
 
-  if (typeof envVars.PUSHPRESSTS_COMPANY_ID !== "undefined") {
-    clone.companyId ??= envVars.PUSHPRESSTS_COMPANY_ID;
+  if (typeof envVars.PUSHPRESS_COMPANY_ID !== "undefined") {
+    clone.companyId ??= envVars.PUSHPRESS_COMPANY_ID;
   }
 
   return clone;

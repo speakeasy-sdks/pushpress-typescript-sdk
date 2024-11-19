@@ -4,7 +4,7 @@
 
 import { messagesEmailSend } from "../funcs/messagesEmailSend.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "../models/operations/index.js";
+import { SendEmailRequestBody } from "../models/operations/sendemail.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Email extends ClientSDK {
@@ -12,7 +12,7 @@ export class Email extends ClientSDK {
    * Send an email
    */
   async send(
-    request: operations.SendEmailRequestBody,
+    request: SendEmailRequestBody,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesEmailSend(

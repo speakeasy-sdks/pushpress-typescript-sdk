@@ -15,14 +15,14 @@ Get a list of all customers in a
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.customers.list({});
+  const result = await pushpress.customers.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -38,17 +38,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { customersList } from "pushpress-ts/funcs/customersList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { customersList } from "pushpress/funcs/customersList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await customersList(pushpressTs, {});
+  const res = await customersList(pushpress, {});
 
   if (!res.ok) {
     throw res.error;
@@ -97,14 +97,14 @@ Get a customer by ID
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.customers.get({
+  const result = await pushpress.customers.get({
     id: "<id>",
   });
 
@@ -120,17 +120,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { customersGet } from "pushpress-ts/funcs/customersGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { customersGet } from "pushpress/funcs/customersGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await customersGet(pushpressTs, {
+  const res = await customersGet(pushpress, {
     id: "<id>",
   });
 

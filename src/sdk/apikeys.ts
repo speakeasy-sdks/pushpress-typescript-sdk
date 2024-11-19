@@ -5,7 +5,8 @@
 import { apiKeysDelete } from "../funcs/apiKeysDelete.js";
 import { apiKeysRevoke } from "../funcs/apiKeysRevoke.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "../models/operations/index.js";
+import { DeleteApiKeyRequest } from "../models/operations/deleteapikey.js";
+import { RevokeApiKeyRequest } from "../models/operations/revokeapikey.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ApiKeys extends ClientSDK {
@@ -16,7 +17,7 @@ export class ApiKeys extends ClientSDK {
    * Revoke (deactivate) an API key.
    */
   async revoke(
-    request: operations.RevokeApiKeyRequest,
+    request: RevokeApiKeyRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(apiKeysRevoke(
@@ -33,7 +34,7 @@ export class ApiKeys extends ClientSDK {
    * Permanently delete an API key from the system.
    */
   async delete(
-    request: operations.DeleteApiKeyRequest,
+    request: DeleteApiKeyRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(apiKeysDelete(

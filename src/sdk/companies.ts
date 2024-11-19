@@ -4,7 +4,7 @@
 
 import { companiesGet } from "../funcs/companiesGet.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import { Company } from "../models/components/company.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Companies extends ClientSDK {
@@ -13,7 +13,7 @@ export class Companies extends ClientSDK {
    */
   async get(
     options?: RequestOptions,
-  ): Promise<components.Company> {
+  ): Promise<Company> {
     return unwrapAsync(companiesGet(
       this,
       options,

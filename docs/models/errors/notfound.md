@@ -5,7 +5,7 @@ Status codes relating to the resource/entity they are requesting not being found
 ## Example Usage
 
 ```typescript
-import { NotFound } from "pushpress-ts/models/errors";
+import { NotFound } from "pushpress/models/errors/notfound.js";
 
 // No examples available for this model
 ```

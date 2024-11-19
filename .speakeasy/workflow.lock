@@ -12,18 +12,16 @@ targets:
         sourceNamespace: pushpress-ts-oas
         sourceRevisionDigest: sha256:d751985045906692a5254802c001e0232a91677a90391f35f3c337823b1bb9f4
         sourceBlobDigest: sha256:fe39108aa8e79f4f9ac58682ff65c110aa7b492ab06954bb103d106f787d6b3a
-        codeSamplesNamespace: pushpress-ts-oas-code-samples
-        codeSamplesRevisionDigest: sha256:e4520c82576cf4483ac464e2d944b227ccc1094f15f1d5ca9e89ba70ad96ea36
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         pushpress-ts-OAS:
             inputs:
-                - location: /Users/katrinasanzi/pushpress/openapi.draft.yaml
+                - location: ./openapi.draft.yaml
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
-                - location: /Users/katrinasanzi/pushpress/.speakeasy/speakeasy-suggest-error-types.yaml
+                - location: .speakeasy/speakeasy-suggest-error-types.yaml
             registry:
                 location: registry.speakeasyapi.dev/katrina/katrina/pushpress-ts-oas
     targets:

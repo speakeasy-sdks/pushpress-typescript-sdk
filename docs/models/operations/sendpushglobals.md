@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SendPushGlobals } from "pushpress-ts/models/operations";
+import { SendPushGlobals } from "pushpress/models/operations/sendpush.js";
 
 let value: SendPushGlobals = {};
 ```

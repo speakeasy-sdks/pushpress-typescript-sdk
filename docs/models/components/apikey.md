@@ -5,7 +5,7 @@ Platform API key
 ## Example Usage
 
 ```typescript
-import { ApiKey } from "pushpress-ts/models/components";
+import { ApiKey } from "pushpress/models/components/apikey.js";
 
 let value: ApiKey = {
   keyUuid: "key_asdfghjklqwertyuiop",

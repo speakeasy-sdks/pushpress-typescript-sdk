@@ -5,7 +5,7 @@ A collection of status codes that generally mean the server failed in an unexpec
 ## Example Usage
 
 ```typescript
-import { InternalServerError } from "pushpress-ts/models/errors";
+import { InternalServerError } from "pushpress/models/errors/internalservererror.js";
 
 // No examples available for this model
 ```

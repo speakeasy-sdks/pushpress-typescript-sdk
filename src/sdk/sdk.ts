@@ -12,7 +12,7 @@ import { Keys } from "./keys.js";
 import { Messages } from "./messages.js";
 import { Webhooks } from "./webhooks.js";
 
-export class PushpressTs extends ClientSDK {
+export class Pushpress extends ClientSDK {
   private _apps?: Apps;
   get apps(): Apps {
     return (this._apps ??= new Apps(this._options));

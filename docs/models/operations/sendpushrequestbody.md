@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SendPushRequestBody } from "pushpress-ts/models/operations";
+import { SendPushRequestBody } from "pushpress/models/operations/sendpush.js";
 
 let value: SendPushRequestBody = {
   deviceTokens: [

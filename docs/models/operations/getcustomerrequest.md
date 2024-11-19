@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetCustomerRequest } from "pushpress-ts/models/operations";
+import { GetCustomerRequest } from "pushpress/models/operations/getcustomer.js";
 
 let value: GetCustomerRequest = {
   id: "<id>",

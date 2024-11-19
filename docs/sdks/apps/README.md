@@ -16,14 +16,14 @@ List all available apps
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -37,17 +37,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsList } from "pushpress-ts/funcs/appsList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsList } from "pushpress/funcs/appsList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsList(pushpressTs);
+  const res = await appsList(pushpress);
 
   if (!res.ok) {
     throw res.error;
@@ -93,14 +93,14 @@ Get details of a specific app
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.get({
+  const result = await pushpress.apps.get({
     appId: "<id>",
   });
 
@@ -116,17 +116,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsGet } from "pushpress-ts/funcs/appsGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsGet } from "pushpress/funcs/appsGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsGet(pushpressTs, {
+  const res = await appsGet(pushpress, {
     appId: "<id>",
   });
 
@@ -175,14 +175,14 @@ Install an app for a company
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushpressTs.apps.install({
+  await pushpress.apps.install({
     appId: "<id>",
     requestBody: {
       company: "Hirthe and Sons",
@@ -200,17 +200,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsInstall } from "pushpress-ts/funcs/appsInstall.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsInstall } from "pushpress/funcs/appsInstall.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsInstall(pushpressTs, {
+  const res = await appsInstall(pushpress, {
     appId: "<id>",
     requestBody: {
       company: "Hirthe and Sons",

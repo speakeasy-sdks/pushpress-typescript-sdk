@@ -4,7 +4,7 @@
 
 import { messagesPushSend } from "../funcs/messagesPushSend.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "../models/operations/index.js";
+import { SendPushRequestBody } from "../models/operations/sendpush.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Push extends ClientSDK {
@@ -12,7 +12,7 @@ export class Push extends ClientSDK {
    * Send a push notification
    */
   async send(
-    request: operations.SendPushRequestBody,
+    request: SendPushRequestBody,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesPushSend(

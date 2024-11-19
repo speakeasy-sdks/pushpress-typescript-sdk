@@ -6,7 +6,12 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
+import {
+  AppInstall,
+  AppInstall$inboundSchema,
+  AppInstall$Outbound,
+  AppInstall$outboundSchema,
+} from "../components/appinstall.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListAppInstallsGlobals = {
@@ -23,7 +28,7 @@ export type ListAppInstallsRequest = {
  * A paginated list of app installs
  */
 export type ListAppInstallsResponseBody = {
-  data: Array<components.AppInstall>;
+  data: Array<AppInstall>;
 };
 
 export type ListAppInstallsResponse = {
@@ -158,12 +163,12 @@ export const ListAppInstallsResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(components.AppInstall$inboundSchema),
+  data: z.array(AppInstall$inboundSchema),
 });
 
 /** @internal */
 export type ListAppInstallsResponseBody$Outbound = {
-  data: Array<components.AppInstall$Outbound>;
+  data: Array<AppInstall$Outbound>;
 };
 
 /** @internal */
@@ -172,7 +177,7 @@ export const ListAppInstallsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListAppInstallsResponseBody
 > = z.object({
-  data: z.array(components.AppInstall$outboundSchema),
+  data: z.array(AppInstall$outboundSchema),
 });
 
 /**

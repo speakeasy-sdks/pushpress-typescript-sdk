@@ -19,18 +19,18 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsList } from "pushpress-ts/funcs/appsList.js";
-import { SDKValidationError } from "pushpress-ts/models/errors/sdkvalidationerror.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsList } from "pushpress/funcs/appsList.js";
+import { SDKValidationError } from "pushpress/models/errors/sdkvalidationerror.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsList(pushpressTs);
+  const res = await appsList(pushpress);
 
   switch (true) {
     case res.ok:

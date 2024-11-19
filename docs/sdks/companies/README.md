@@ -14,14 +14,14 @@ Get company details associated with the API key
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.companies.get();
+  const result = await pushpress.companies.get();
 
   // Handle the result
   console.log(result);
@@ -35,17 +35,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { companiesGet } from "pushpress-ts/funcs/companiesGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { companiesGet } from "pushpress/funcs/companiesGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await companiesGet(pushpressTs);
+  const res = await companiesGet(pushpress);
 
   if (!res.ok) {
     throw res.error;

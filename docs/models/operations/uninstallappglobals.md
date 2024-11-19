@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UninstallAppGlobals } from "pushpress-ts/models/operations";
+import { UninstallAppGlobals } from "pushpress/models/operations/uninstallapp.js";
 
 let value: UninstallAppGlobals = {};
 ```

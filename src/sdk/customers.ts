@@ -5,8 +5,12 @@
 import { customersGet } from "../funcs/customersGet.js";
 import { customersList } from "../funcs/customersList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { Customer } from "../models/components/customer.js";
+import { GetCustomerRequest } from "../models/operations/getcustomer.js";
+import {
+  ListCustomersRequest,
+  ListCustomersResponse,
+} from "../models/operations/listcustomers.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
@@ -15,9 +19,9 @@ export class Customers extends ClientSDK {
    * Get a list of all customers in a
    */
   async list(
-    request: operations.ListCustomersRequest,
+    request: ListCustomersRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListCustomersResponse>> {
+  ): Promise<PageIterator<ListCustomersResponse>> {
     return unwrapResultIterator(customersList(
       this,
       request,
@@ -29,9 +33,9 @@ export class Customers extends ClientSDK {
    * Get a customer by ID
    */
   async get(
-    request: operations.GetCustomerRequest,
+    request: GetCustomerRequest,
     options?: RequestOptions,
-  ): Promise<components.Customer> {
+  ): Promise<Customer> {
     return unwrapAsync(customersGet(
       this,
       request,

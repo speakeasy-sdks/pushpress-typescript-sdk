@@ -3,13 +3,17 @@
  */
 
 import * as z from "zod";
-import { PushpressTsCore } from "../core.js";
+import { PushpressCore } from "../core.js";
 import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
+import { App, App$inboundSchema } from "../models/components/app.js";
 import { APIError } from "../models/errors/apierror.js";
+import {
+  BadRequest,
+  BadRequest$inboundSchema,
+} from "../models/errors/badrequest.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -17,25 +21,38 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import * as errors from "../models/errors/index.js";
+import {
+  InternalServerError,
+  InternalServerError$inboundSchema,
+} from "../models/errors/internalservererror.js";
+import { NotFound, NotFound$inboundSchema } from "../models/errors/notfound.js";
+import {
+  RateLimited,
+  RateLimited$inboundSchema,
+} from "../models/errors/ratelimited.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { Timeout, Timeout$inboundSchema } from "../models/errors/timeout.js";
+import {
+  Unauthorized,
+  Unauthorized$inboundSchema,
+} from "../models/errors/unauthorized.js";
 import { Result } from "../types/fp.js";
 
 /**
  * List all available apps
  */
 export async function appsList(
-  client: PushpressTsCore,
+  client: PushpressCore,
   options?: RequestOptions,
 ): Promise<
   Result<
-    Array<components.App>,
-    | errors.BadRequest
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.RateLimited
-    | errors.InternalServerError
+    Array<App>,
+    | BadRequest
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -132,13 +149,13 @@ export async function appsList(
   };
 
   const [result] = await M.match<
-    Array<components.App>,
-    | errors.BadRequest
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.RateLimited
-    | errors.InternalServerError
+    Array<App>,
+    | BadRequest
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -147,18 +164,15 @@ export async function appsList(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, z.array(components.App$inboundSchema)),
-    M.jsonErr(
-      [400, 413, 414, 415, 422, 431, 510],
-      errors.BadRequest$inboundSchema,
-    ),
-    M.jsonErr([401, 403, 407, 511], errors.Unauthorized$inboundSchema),
-    M.jsonErr([404, 501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr([408, 504], errors.Timeout$inboundSchema),
-    M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.json(200, z.array(App$inboundSchema)),
+    M.jsonErr([400, 413, 414, 415, 422, 431, 510], BadRequest$inboundSchema),
+    M.jsonErr([401, 403, 407, 511], Unauthorized$inboundSchema),
+    M.jsonErr([404, 501, 505], NotFound$inboundSchema),
+    M.jsonErr([408, 504], Timeout$inboundSchema),
+    M.jsonErr(429, RateLimited$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
-      errors.InternalServerError$inboundSchema,
+      InternalServerError$inboundSchema,
     ),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

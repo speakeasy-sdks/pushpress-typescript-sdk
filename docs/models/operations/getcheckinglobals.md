@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetCheckinGlobals } from "pushpress-ts/models/operations";
+import { GetCheckinGlobals } from "pushpress/models/operations/getcheckin.js";
 
 let value: GetCheckinGlobals = {};
 ```

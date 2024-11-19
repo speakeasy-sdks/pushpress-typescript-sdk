@@ -3,10 +3,10 @@ speakeasyVersion: latest
 sources:
     pushpress-ts-OAS:
         inputs:
-            - location: /Users/katrinasanzi/pushpress/openapi.draft.yaml
+            - location: ./openapi.draft.yaml
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
-            - location: /Users/katrinasanzi/pushpress/.speakeasy/speakeasy-suggest-error-types.yaml
+            - location: .speakeasy/speakeasy-suggest-error-types.yaml
         registry:
             location: registry.speakeasyapi.dev/katrina/katrina/pushpress-ts-oas
 targets:

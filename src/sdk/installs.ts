@@ -7,8 +7,14 @@ import { appsInstallsHardDelete } from "../funcs/appsInstallsHardDelete.js";
 import { appsInstallsList } from "../funcs/appsInstallsList.js";
 import { appsInstallsUninstall } from "../funcs/appsInstallsUninstall.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { AppInstall } from "../models/components/appinstall.js";
+import { DeleteAppInstallRequest } from "../models/operations/deleteappinstall.js";
+import { GetAppInstallRequest } from "../models/operations/getappinstall.js";
+import {
+  ListAppInstallsRequest,
+  ListAppInstallsResponse,
+} from "../models/operations/listappinstalls.js";
+import { UninstallAppRequest } from "../models/operations/uninstallapp.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
@@ -17,9 +23,9 @@ export class Installs extends ClientSDK {
    * List all installs of a specific app
    */
   async list(
-    request: operations.ListAppInstallsRequest,
+    request: ListAppInstallsRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListAppInstallsResponse>> {
+  ): Promise<PageIterator<ListAppInstallsResponse>> {
     return unwrapResultIterator(appsInstallsList(
       this,
       request,
@@ -31,9 +37,9 @@ export class Installs extends ClientSDK {
    * Soft uninstall an app (mark it as uninstalled but retain data)
    */
   async uninstall(
-    request: operations.UninstallAppRequest,
+    request: UninstallAppRequest,
     options?: RequestOptions,
-  ): Promise<components.AppInstall> {
+  ): Promise<AppInstall> {
     return unwrapAsync(appsInstallsUninstall(
       this,
       request,
@@ -45,9 +51,9 @@ export class Installs extends ClientSDK {
    * Hard delete an app (remove all data)
    */
   async hardDelete(
-    request: operations.DeleteAppInstallRequest,
+    request: DeleteAppInstallRequest,
     options?: RequestOptions,
-  ): Promise<components.AppInstall> {
+  ): Promise<AppInstall> {
     return unwrapAsync(appsInstallsHardDelete(
       this,
       request,
@@ -59,9 +65,9 @@ export class Installs extends ClientSDK {
    * Get details of a specific app install
    */
   async get(
-    request: operations.GetAppInstallRequest,
+    request: GetAppInstallRequest,
     options?: RequestOptions,
-  ): Promise<components.AppInstall> {
+  ): Promise<AppInstall> {
     return unwrapAsync(appsInstallsGet(
       this,
       request,

@@ -5,7 +5,7 @@ Schema representing a company with a pushpress account, whether its a gym, marti
 ## Example Usage
 
 ```typescript
-import { Company } from "pushpress-ts/models/components";
+import { Company } from "pushpress/models/components/company.js";
 
 let value: Company = {
   id: "client_1234",

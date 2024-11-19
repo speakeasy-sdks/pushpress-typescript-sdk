@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Security } from "pushpress-ts/models/components";
+import { Security } from "pushpress/models/components/security.js";
 
 let value: Security = {};
 ```

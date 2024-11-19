@@ -1,3 +1,0 @@
-# PushpressTs SDK
-
-## Overview

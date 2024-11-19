@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AppInstall } from "pushpress-ts/models/components";
+import { AppInstall } from "pushpress/models/components/appinstall.js";
 
 let value: AppInstall = {
   id: "90999fa5-6b0a-4a32-8559-7f132a47321a",

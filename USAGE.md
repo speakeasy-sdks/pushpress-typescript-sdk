@@ -1,13 +1,13 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);

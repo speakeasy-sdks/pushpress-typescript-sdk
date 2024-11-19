@@ -5,7 +5,7 @@ A collection of codes that generally means the end user got something wrong in m
 ## Example Usage
 
 ```typescript
-import { BadRequest } from "pushpress-ts/models/errors";
+import { BadRequest } from "pushpress/models/errors/badrequest.js";
 
 // No examples available for this model
 ```

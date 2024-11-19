@@ -5,7 +5,7 @@ Timeouts occurred with the request
 ## Example Usage
 
 ```typescript
-import { Timeout } from "pushpress-ts/models/errors";
+import { Timeout } from "pushpress/models/errors/timeout.js";
 
 // No examples available for this model
 ```

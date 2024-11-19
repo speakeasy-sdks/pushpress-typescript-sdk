@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UninstallAppRequest } from "pushpress-ts/models/operations";
+import { UninstallAppRequest } from "pushpress/models/operations/uninstallapp.js";
 
 let value: UninstallAppRequest = {
   appId: "<id>",

@@ -15,14 +15,14 @@ Revoke (deactivate) an API key.
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushpressTs.apiKeys.revoke({
+  await pushpress.apiKeys.revoke({
     keyId: "<id>",
   });
 
@@ -37,17 +37,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { apiKeysRevoke } from "pushpress-ts/funcs/apiKeysRevoke.js";
+import { PushpressCore } from "pushpress/core.js";
+import { apiKeysRevoke } from "pushpress/funcs/apiKeysRevoke.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await apiKeysRevoke(pushpressTs, {
+  const res = await apiKeysRevoke(pushpress, {
     keyId: "<id>",
   });
 
@@ -95,14 +95,14 @@ Permanently delete an API key from the system.
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushpressTs.apiKeys.delete({
+  await pushpress.apiKeys.delete({
     keyId: "<id>",
   });
 
@@ -117,17 +117,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { apiKeysDelete } from "pushpress-ts/funcs/apiKeysDelete.js";
+import { PushpressCore } from "pushpress/core.js";
+import { apiKeysDelete } from "pushpress/funcs/apiKeysDelete.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await apiKeysDelete(pushpressTs, {
+  const res = await apiKeysDelete(pushpress, {
     keyId: "<id>",
   });
 

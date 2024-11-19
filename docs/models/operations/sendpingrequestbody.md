@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SendPingRequestBody } from "pushpress-ts/models/operations";
+import { SendPingRequestBody } from "pushpress/models/operations/sendping.js";
 
 let value: SendPingRequestBody = {
   channel: "<value>",

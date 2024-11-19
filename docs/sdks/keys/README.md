@@ -16,14 +16,14 @@ Create a new API key for a company.
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushpressTs.keys.create({
+  await pushpress.keys.create({
     company: "Nienow Inc",
   });
 
@@ -38,17 +38,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { keysCreate } from "pushpress-ts/funcs/keysCreate.js";
+import { PushpressCore } from "pushpress/core.js";
+import { keysCreate } from "pushpress/funcs/keysCreate.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await keysCreate(pushpressTs, {
+  const res = await keysCreate(pushpress, {
     company: "Nienow Inc",
   });
 
@@ -96,14 +96,14 @@ List all active API keys for a client.
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.keys.list();
+  const result = await pushpress.keys.list();
 
   // Handle the result
   console.log(result);
@@ -117,17 +117,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { keysList } from "pushpress-ts/funcs/keysList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { keysList } from "pushpress/funcs/keysList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await keysList(pushpressTs);
+  const res = await keysList(pushpress);
 
   if (!res.ok) {
     throw res.error;
@@ -173,14 +173,14 @@ Retrieve a single API key.
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.keys.get({
+  const result = await pushpress.keys.get({
     keyId: "<id>",
   });
 
@@ -196,17 +196,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { keysGet } from "pushpress-ts/funcs/keysGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { keysGet } from "pushpress/funcs/keysGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await keysGet(pushpressTs, {
+  const res = await keysGet(pushpress, {
     keyId: "<id>",
   });
 

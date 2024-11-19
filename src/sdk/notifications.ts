@@ -4,7 +4,7 @@
 
 import { messagesNotificationsSendPing } from "../funcs/messagesNotificationsSendPing.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "../models/operations/index.js";
+import { SendPingRequestBody } from "../models/operations/sendping.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Notifications extends ClientSDK {
@@ -12,7 +12,7 @@ export class Notifications extends ClientSDK {
    * Send a ping notification via Ably Realtime
    */
   async sendPing(
-    request: operations.SendPingRequestBody,
+    request: SendPingRequestBody,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesNotificationsSendPing(

@@ -6,7 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
+import {
+  Customer,
+  Customer$inboundSchema,
+  Customer$Outbound,
+  Customer$outboundSchema,
+} from "../components/customer.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const CustomerDeletedEventEventType = {
@@ -20,7 +25,7 @@ export type CustomerDeletedEventRequestBody = {
   /**
    * Schema representing a customer, former customer or lead served by Company
    */
-  data?: components.Customer | undefined;
+  data?: Customer | undefined;
   /**
    * Unix timestamp of the deletion event
    */
@@ -55,14 +60,14 @@ export const CustomerDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: components.Customer$inboundSchema.optional(),
+  data: Customer$inboundSchema.optional(),
   created: z.number().int().optional(),
   eventType: CustomerDeletedEventEventType$inboundSchema.optional(),
 });
 
 /** @internal */
 export type CustomerDeletedEventRequestBody$Outbound = {
-  data?: components.Customer$Outbound | undefined;
+  data?: Customer$Outbound | undefined;
   created?: number | undefined;
   eventType?: string | undefined;
 };
@@ -73,7 +78,7 @@ export const CustomerDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerDeletedEventRequestBody
 > = z.object({
-  data: components.Customer$outboundSchema.optional(),
+  data: Customer$outboundSchema.optional(),
   created: z.number().int().optional(),
   eventType: CustomerDeletedEventEventType$outboundSchema.optional(),
 });

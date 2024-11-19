@@ -6,7 +6,12 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
+import {
+  Checkin,
+  Checkin$inboundSchema,
+  Checkin$Outbound,
+  Checkin$outboundSchema,
+} from "../components/checkin.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCheckinsGlobals = {
@@ -22,7 +27,7 @@ export type ListCheckinsRequest = {
  * A paginated response containing a list of check-ins
  */
 export type ListCheckinsResponseBody = {
-  data: Array<components.Checkin>;
+  data: Array<Checkin>;
 };
 
 export type ListCheckinsResponse = {
@@ -146,12 +151,12 @@ export const ListCheckinsResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(components.Checkin$inboundSchema),
+  data: z.array(Checkin$inboundSchema),
 });
 
 /** @internal */
 export type ListCheckinsResponseBody$Outbound = {
-  data: Array<components.Checkin$Outbound>;
+  data: Array<Checkin$Outbound>;
 };
 
 /** @internal */
@@ -160,7 +165,7 @@ export const ListCheckinsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCheckinsResponseBody
 > = z.object({
-  data: z.array(components.Checkin$outboundSchema),
+  data: z.array(Checkin$outboundSchema),
 });
 
 /**

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteWebhookRequest } from "pushpress-ts/models/operations";
+import { DeleteWebhookRequest } from "pushpress/models/operations/deletewebhook.js";
 
 let value: DeleteWebhookRequest = {
   webhookId: "<id>",

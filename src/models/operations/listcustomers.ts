@@ -6,7 +6,12 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
+import {
+  Customer,
+  Customer$inboundSchema,
+  Customer$Outbound,
+  Customer$outboundSchema,
+} from "../components/customer.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomersGlobals = {
@@ -25,7 +30,7 @@ export type ListCustomersResponseBody = {
   /**
    * An array of objects containing customerIds
    */
-  data: Array<components.Customer>;
+  data: Array<Customer>;
 };
 
 export type ListCustomersResponse = {
@@ -149,12 +154,12 @@ export const ListCustomersResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(components.Customer$inboundSchema),
+  data: z.array(Customer$inboundSchema),
 });
 
 /** @internal */
 export type ListCustomersResponseBody$Outbound = {
-  data: Array<components.Customer$Outbound>;
+  data: Array<Customer$Outbound>;
 };
 
 /** @internal */
@@ -163,7 +168,7 @@ export const ListCustomersResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCustomersResponseBody
 > = z.object({
-  data: z.array(components.Customer$outboundSchema),
+  data: z.array(Customer$outboundSchema),
 });
 
 /**

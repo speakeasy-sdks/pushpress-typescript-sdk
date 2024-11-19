@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EventCheckin } from "pushpress-ts/models/components";
+import { EventCheckin } from "pushpress/models/components/eventcheckin.js";
 
 let value: EventCheckin = {
   name: "<value>",

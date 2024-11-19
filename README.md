@@ -16,7 +16,7 @@
 
 <!-- Start Summary [summary] -->
 ## Summary
-PushPress API: Welcome to PushPress' API documentation!
+
 
 <!-- End Summary [summary] -->
 
@@ -45,29 +45,32 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/speakeasy-sdks/pushpress-typescript-sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add https://github.com/speakeasy-sdks/pushpress-typescript-sdk
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add https://github.com/speakeasy-sdks/pushpress-typescript-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add https://github.com/speakeasy-sdks/pushpress-typescript-sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+> [!NOTE]
+> This package is published with CommonJS and ES Modules (ESM) support.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -82,14 +85,14 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -228,14 +231,14 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.installs.list({
+  const result = await pushpress.apps.installs.list({
     appId: "<id>",
   });
 
@@ -257,14 +260,14 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list({
+  const result = await pushpress.apps.list({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -287,9 +290,9 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
+const pushpress = new Pushpress({
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -300,11 +303,11 @@ const pushpressTs = new PushpressTs({
     },
     retryConnectionErrors: false,
   },
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -343,25 +346,23 @@ In addition, when custom error responses are specified for an operation, the SDK
 | errors.APIError            | 4XX, 5XX                          | \*/\*            |
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
-import {
-  BadRequest,
-  InternalServerError,
-  NotFound,
-  RateLimited,
-  SDKValidationError,
-  Timeout,
-  Unauthorized,
-} from "pushpress-ts/models/errors";
+import { Pushpress } from "pushpress";
+import { BadRequest } from "pushpress/models/errors/badrequest.js";
+import { InternalServerError } from "pushpress/models/errors/internalservererror.js";
+import { NotFound } from "pushpress/models/errors/notfound.js";
+import { RateLimited } from "pushpress/models/errors/ratelimited.js";
+import { SDKValidationError } from "pushpress/models/errors/sdkvalidationerror.js";
+import { Timeout } from "pushpress/models/errors/timeout.js";
+import { Unauthorized } from "pushpress/models/errors/unauthorized.js";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   let result;
   try {
-    result = await pushpressTs.apps.list();
+    result = await pushpress.apps.list();
 
     // Handle the result
     console.log(result);
@@ -434,15 +435,15 @@ You can override the default server globally by passing a server name to the `se
 #### Example
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
+const pushpress = new Pushpress({
   server: "dev",
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -456,15 +457,15 @@ run();
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
+const pushpress = new Pushpress({
   serverURL: "https://api.pushpress.com",
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -493,8 +494,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
-import { HTTPClient } from "pushpress-ts/lib/http";
+import { Pushpress } from "pushpress";
+import { HTTPClient } from "pushpress/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -520,7 +521,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new PushpressTs({ httpClient });
+const sdk = new Pushpress({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -531,20 +532,20 @@ const sdk = new PushpressTs({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name     | Type   | Scheme  | Environment Variable  |
-| -------- | ------ | ------- | --------------------- |
-| `apiKey` | apiKey | API key | `PUSHPRESSTS_API_KEY` |
+| Name     | Type   | Scheme  | Environment Variable |
+| -------- | ------ | ------- | -------------------- |
+| `apiKey` | apiKey | API key | `PUSHPRESS_API_KEY`  |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.list();
+  const result = await pushpress.apps.list();
 
   // Handle the result
   console.log(result);
@@ -566,12 +567,12 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const sdk = new PushpressTs({ debugLogger: console });
+const sdk = new Pushpress({ debugLogger: console });
 ```
 
-You can also enable a default debug logger by setting an environment variable `PUSHPRESSTS_DEBUG` to true.
+You can also enable a default debug logger by setting an environment variable `PUSHPRESS_DEBUG` to true.
 <!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

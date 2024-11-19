@@ -15,14 +15,14 @@ Get a list of all check-ins
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.checkins.list({});
+  const result = await pushpress.checkins.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -38,17 +38,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { checkinsList } from "pushpress-ts/funcs/checkinsList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { checkinsList } from "pushpress/funcs/checkinsList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await checkinsList(pushpressTs, {});
+  const res = await checkinsList(pushpress, {});
 
   if (!res.ok) {
     throw res.error;
@@ -97,14 +97,14 @@ Get a check-in by ID
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.checkins.get({
+  const result = await pushpress.checkins.get({
     id: "<id>",
   });
 
@@ -120,17 +120,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { checkinsGet } from "pushpress-ts/funcs/checkinsGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { checkinsGet } from "pushpress/funcs/checkinsGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await checkinsGet(pushpressTs, {
+  const res = await checkinsGet(pushpress, {
     id: "<id>",
   });
 

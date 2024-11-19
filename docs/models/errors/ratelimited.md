@@ -5,7 +5,7 @@ Status codes relating to the client being rate limited by the server
 ## Example Usage
 
 ```typescript
-import { RateLimited } from "pushpress-ts/models/errors";
+import { RateLimited } from "pushpress/models/errors/ratelimited.js";
 
 // No examples available for this model
 ```

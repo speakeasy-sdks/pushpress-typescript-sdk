@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod";
-import { PushpressTsCore } from "../core.js";
+import { PushpressCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
@@ -12,33 +12,53 @@ import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
+  BadRequest,
+  BadRequest$inboundSchema,
+} from "../models/errors/badrequest.js";
+import {
   ConnectionError,
   InvalidRequestError,
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import * as errors from "../models/errors/index.js";
+import {
+  InternalServerError,
+  InternalServerError$inboundSchema,
+} from "../models/errors/internalservererror.js";
+import { NotFound, NotFound$inboundSchema } from "../models/errors/notfound.js";
+import {
+  RateLimited,
+  RateLimited$inboundSchema,
+} from "../models/errors/ratelimited.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
+import { Timeout, Timeout$inboundSchema } from "../models/errors/timeout.js";
+import {
+  Unauthorized,
+  Unauthorized$inboundSchema,
+} from "../models/errors/unauthorized.js";
+import {
+  SendPingRequestBody,
+  SendPingRequestBody$outboundSchema,
+} from "../models/operations/sendping.js";
 import { Result } from "../types/fp.js";
 
 /**
  * Send a ping notification via Ably Realtime
  */
 export async function messagesNotificationsSendPing(
-  client: PushpressTsCore,
-  request: operations.SendPingRequestBody,
+  client: PushpressCore,
+  request: SendPingRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
     void,
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.BadRequest
-    | errors.RateLimited
-    | errors.InternalServerError
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | BadRequest
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -50,7 +70,7 @@ export async function messagesNotificationsSendPing(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.SendPingRequestBody$outboundSchema.parse(value),
+    (value) => SendPingRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -153,12 +173,12 @@ export async function messagesNotificationsSendPing(
 
   const [result] = await M.match<
     void,
-    | errors.Unauthorized
-    | errors.NotFound
-    | errors.Timeout
-    | errors.BadRequest
-    | errors.RateLimited
-    | errors.InternalServerError
+    | Unauthorized
+    | NotFound
+    | Timeout
+    | BadRequest
+    | RateLimited
+    | InternalServerError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -169,14 +189,14 @@ export async function messagesNotificationsSendPing(
   >(
     M.nil(200, z.void()),
     M.fail([400, "4XX", "5XX"]),
-    M.jsonErr([401, 403, 407, 511], errors.Unauthorized$inboundSchema),
-    M.jsonErr([404, 501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr([408, 504], errors.Timeout$inboundSchema),
-    M.jsonErr([413, 414, 415, 422, 431, 510], errors.BadRequest$inboundSchema),
-    M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.jsonErr([401, 403, 407, 511], Unauthorized$inboundSchema),
+    M.jsonErr([404, 501, 505], NotFound$inboundSchema),
+    M.jsonErr([408, 504], Timeout$inboundSchema),
+    M.jsonErr([413, 414, 415, 422, 431, 510], BadRequest$inboundSchema),
+    M.jsonErr(429, RateLimited$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
-      errors.InternalServerError$inboundSchema,
+      InternalServerError$inboundSchema,
     ),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

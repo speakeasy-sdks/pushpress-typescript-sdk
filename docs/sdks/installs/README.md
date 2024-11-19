@@ -17,14 +17,14 @@ List all installs of a specific app
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.installs.list({
+  const result = await pushpress.apps.installs.list({
     appId: "<id>",
   });
 
@@ -42,17 +42,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsInstallsList } from "pushpress-ts/funcs/appsInstallsList.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsInstallsList } from "pushpress/funcs/appsInstallsList.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsInstallsList(pushpressTs, {
+  const res = await appsInstallsList(pushpress, {
     appId: "<id>",
   });
 
@@ -103,14 +103,14 @@ Soft uninstall an app (mark it as uninstalled but retain data)
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.installs.uninstall({
+  const result = await pushpress.apps.installs.uninstall({
     appId: "<id>",
     installId: "<id>",
   });
@@ -127,17 +127,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsInstallsUninstall } from "pushpress-ts/funcs/appsInstallsUninstall.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsInstallsUninstall } from "pushpress/funcs/appsInstallsUninstall.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsInstallsUninstall(pushpressTs, {
+  const res = await appsInstallsUninstall(pushpress, {
     appId: "<id>",
     installId: "<id>",
   });
@@ -187,14 +187,14 @@ Hard delete an app (remove all data)
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.installs.hardDelete({
+  const result = await pushpress.apps.installs.hardDelete({
     appId: "<id>",
     installId: "<id>",
   });
@@ -211,17 +211,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsInstallsHardDelete } from "pushpress-ts/funcs/appsInstallsHardDelete.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsInstallsHardDelete } from "pushpress/funcs/appsInstallsHardDelete.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsInstallsHardDelete(pushpressTs, {
+  const res = await appsInstallsHardDelete(pushpress, {
     appId: "<id>",
     installId: "<id>",
   });
@@ -271,14 +271,14 @@ Get details of a specific app install
 ### Example Usage
 
 ```typescript
-import { PushpressTs } from "pushpress-ts";
+import { Pushpress } from "pushpress";
 
-const pushpressTs = new PushpressTs({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new Pushpress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushpressTs.apps.installs.get({
+  const result = await pushpress.apps.installs.get({
     appId: "<id>",
     installId: "<id>",
   });
@@ -295,17 +295,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PushpressTsCore } from "pushpress-ts/core.js";
-import { appsInstallsGet } from "pushpress-ts/funcs/appsInstallsGet.js";
+import { PushpressCore } from "pushpress/core.js";
+import { appsInstallsGet } from "pushpress/funcs/appsInstallsGet.js";
 
-// Use `PushpressTsCore` for best tree-shaking performance.
+// Use `PushpressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushpressTs = new PushpressTsCore({
-  apiKey: process.env["PUSHPRESSTS_API_KEY"] ?? "",
+const pushpress = new PushpressCore({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const res = await appsInstallsGet(pushpressTs, {
+  const res = await appsInstallsGet(pushpress, {
     appId: "<id>",
     installId: "<id>",
   });

@@ -6,8 +6,9 @@ import { keysCreate } from "../funcs/keysCreate.js";
 import { keysGet } from "../funcs/keysGet.js";
 import { keysList } from "../funcs/keysList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
+import { ApiKey } from "../models/components/apikey.js";
+import { CreateApiKeyRequestBody } from "../models/operations/createapikey.js";
+import { GetApiKeyRequest } from "../models/operations/getapikey.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Keys extends ClientSDK {
@@ -18,7 +19,7 @@ export class Keys extends ClientSDK {
    * Create a new API key for a company.
    */
   async create(
-    request: operations.CreateApiKeyRequestBody,
+    request: CreateApiKeyRequestBody,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(keysCreate(
@@ -36,7 +37,7 @@ export class Keys extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<components.ApiKey> {
+  ): Promise<ApiKey> {
     return unwrapAsync(keysList(
       this,
       options,
@@ -50,9 +51,9 @@ export class Keys extends ClientSDK {
    * Retrieve a single API key.
    */
   async get(
-    request: operations.GetApiKeyRequest,
+    request: GetApiKeyRequest,
     options?: RequestOptions,
-  ): Promise<components.ApiKey> {
+  ): Promise<ApiKey> {
     return unwrapAsync(keysGet(
       this,
       request,

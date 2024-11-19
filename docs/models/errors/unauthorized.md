@@ -5,7 +5,7 @@ A collection of codes that generally means the client was not authenticated corr
 ## Example Usage
 
 ```typescript
-import { Unauthorized } from "pushpress-ts/models/errors";
+import { Unauthorized } from "pushpress/models/errors/unauthorized.js";
 
 // No examples available for this model
 ```

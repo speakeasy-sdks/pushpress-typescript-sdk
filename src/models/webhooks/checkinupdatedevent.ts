@@ -6,7 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
+import {
+  Checkin,
+  Checkin$inboundSchema,
+  Checkin$Outbound,
+  Checkin$outboundSchema,
+} from "../components/checkin.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const CheckinUpdatedEventEventType = {
@@ -17,7 +22,7 @@ export type CheckinUpdatedEventEventType = ClosedEnum<
 >;
 
 export type CheckinUpdatedEventRequestBody = {
-  data?: components.Checkin | undefined;
+  data?: Checkin | undefined;
   /**
    * Unix timestamp of the update event
    */
@@ -52,14 +57,14 @@ export const CheckinUpdatedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: components.Checkin$inboundSchema.optional(),
+  data: Checkin$inboundSchema.optional(),
   created: z.number().int().optional(),
   eventType: CheckinUpdatedEventEventType$inboundSchema.optional(),
 });
 
 /** @internal */
 export type CheckinUpdatedEventRequestBody$Outbound = {
-  data?: components.Checkin$Outbound | undefined;
+  data?: Checkin$Outbound | undefined;
   created?: number | undefined;
   eventType?: string | undefined;
 };
@@ -70,7 +75,7 @@ export const CheckinUpdatedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckinUpdatedEventRequestBody
 > = z.object({
-  data: components.Checkin$outboundSchema.optional(),
+  data: Checkin$outboundSchema.optional(),
   created: z.number().int().optional(),
   eventType: CheckinUpdatedEventEventType$outboundSchema.optional(),
 });
